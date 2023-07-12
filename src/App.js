@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import './App.css';
-import EventPractice from './EventPractice';
+import { Component } from "react";
+import "./App.css";
+import Number3Class from "./Number3Class";
 //import { MyComponent } from './comp/MyComponent';
 
 /*
@@ -29,13 +29,14 @@ function App() {
 */
 
 class App extends Component {
-  name = '멤버변수 홍길동';
+  name = "멤버변수 홍길동";
   age = 20;
   render() {
     //    const name = '지역변수 홍길동';
+    const map = { a: 1, b: 1, c: 1 };
     return (
       <div className="react">
-        <EventPractice />
+        <Number3Class map={map} />
       </div>
     );
   }

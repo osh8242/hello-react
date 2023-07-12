@@ -1,13 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Number3Class from './Number3 class';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Number3Class from "./Number3Class";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import EventPracticeFunction from "./EventPracticeFunction";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Number3Class />
+    <EventPracticeFunction />
   </React.StrictMode>
 );
 
