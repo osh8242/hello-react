@@ -1,64 +1,53 @@
 import React, { Component } from 'react';
 import './EventPractice.css';
 
-class EventPractice extends Component {
+class EventPractice2 extends Component {
   state = {
     message: '',
     username: '',
     userid: '',
     passwd: '',
   };
+  //createRef() 함수를 사용하여 멤버 변수 선언 및 초기화
+  userid = React.createRef(); //ref속성을 이용하여 값을 설정
+  username = React.createRef();
+  passwd = React.createRef();
 
-  //   handlerChangeMessage = (e) => {
-  //     console.log(e.target);
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
-  //   handlerChangeUsername = (e) => {
-  //     console.log(e.target);
-  //     // this.setState({ username: e.target.value });
-  //     // this.setState({ username: e.target.value });
-  //     this.setState({ [e.target.name]: e.target.value });
-  //   };
+  //userid 사용시  userid.current가 실제 DOM 객체
+
   handlerChange = (e) => {
-    //    console.log(e.target);
     this.setState({ [e.target.name]: e.target.value });
   };
   handlerClick = (e) => {
     this.setState({ message: '', username: '', userid: '', passwd: '' });
   };
-  // handlerKeydown = (e) => {
-  //   console.log(e);
-  //   if (e.keyCode === 13) {
-  //     this.handlerClick(e);
-  //   }
-  // };
-
   handlerSubmit = (e) => {
-    let passwd = document.getElementById('passwd');
-    //let passwd = document.querySelector("input[name='passwd']");
-    passwd.className = '';
+    this.passwd.current.className = '';
     if (this.state.passwd === '0000') {
-      passwd.className = 'success';
+      this.passwd.current.className = 'success';
     } else {
-      passwd.className = 'failure';
+      this.passwd.current.className = 'failure';
     }
 
     //form속성 action에 설정된 주소로 입력 값 전달을 취소한다
     if (this.state.userid === '') {
       alert('아이디 입력해줘~~~');
       e.preventDefault();
-      //let userid = document.querySelector("input[name='userid']");
-      this.useridInput.focus();
+      this.userid.current.focus();
       return false;
     }
     if (this.state.username === '') {
       alert('사용자이름  입력해줘~~~');
       e.preventDefault();
-      //let username = document.querySelector("input[name='username']");
-      this.usernameInput.focus();
+      this.username.current.focus();
       return false;
     }
   };
+
+  add(a, b) {
+    return a + b;
+  }
+
   render() {
     return (
       <div id="idDiv">
@@ -85,7 +74,7 @@ class EventPractice extends Component {
             placeholder="사용자이름 입력..."
             onChange={this.handlerChange}
             value={this.state.username}
-            ref={(ref) => (this.usernameInput = ref)}
+            ref={this.username}
           />
           <br />
           아이디 :
@@ -95,7 +84,7 @@ class EventPractice extends Component {
             placeholder="사용자 아이디 입력..."
             onChange={this.handlerChange}
             value={this.state.userid}
-            ref={(ref) => (this.useridInput = ref)}
+            ref={this.userid}
           />
           <br />
           비밀번호 :
@@ -106,6 +95,7 @@ class EventPractice extends Component {
             placeholder="비밀번호 입력..."
             onChange={this.handlerChange}
             value={this.state.passwd}
+            ref={this.passwd}
           />
           <h2>메시지 : {this.state.message}</h2>
           <h2>사용자명 : {this.state.username}</h2>
@@ -119,4 +109,4 @@ class EventPractice extends Component {
   }
 }
 
-export default EventPractice;
+export default EventPractice2;

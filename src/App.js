@@ -1,6 +1,6 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import "./App.css";
-import Number3Class from "./Number3Class";
+import IterationSampleClass from "./IterationSampleClass";
 //import { MyComponent } from './comp/MyComponent';
 
 /*
@@ -31,12 +31,12 @@ function App() {
 class App extends Component {
   name = "멤버변수 홍길동";
   age = 20;
+  scrollBox = React.createRef();
   render() {
     //    const name = '지역변수 홍길동';
-    const map = { a: 1, b: 1, c: 1 };
     return (
-      <div className="react">
-        <Number3Class map={map} />
+      <div>
+        <IterationSampleClass></IterationSampleClass>
       </div>
     );
   }
