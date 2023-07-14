@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import "./App.css";
-import IterationSampleClass from "./IterationSampleClass";
-//import { MyComponent } from './comp/MyComponent';
+import React, { useState } from "react";
+import InputComponent from "./InputComponent";
+import ListComponent from "./ListComponent";
 
 /*
   flasy
@@ -28,19 +27,35 @@ function App() {
 }
 */
 
-class App extends Component {
-  name = "멤버변수 홍길동";
-  age = 20;
-  scrollBox = React.createRef();
-  render() {
-    //    const name = '지역변수 홍길동';
-    return (
-      <div>
-        <IterationSampleClass></IterationSampleClass>
-      </div>
+const App = () => {
+  const [names, setNames] = useState([
+    { id: 1, text: "눈사람" },
+    { id: 2, text: "얼음" },
+    { id: 3, text: "눈" },
+    { id: 4, text: "바람" },
+  ]);
+
+  const handlerRemove = (row) => {
+    if (
+      window.confirm('"' + row.id + "번 " + row.text + '"을 삭제하시겠습니까?')
+    ) {
+      setNames(names.filter((item) => item.id !== row.id));
+    }
+  };
+
+  const handlerInsert = (inputText) => {
+    setNames(
+      names.concat({ id: names[names.length - 1].id + 1, text: inputText })
     );
-  }
-}
+  };
+
+  return (
+    <div>
+      <InputComponent handlerInsert={handlerInsert} />
+      <ListComponent handlerRemove={handlerRemove} names={names} />
+    </div>
+  );
+};
 /*
 function App() {
   const name = '홍길동';
