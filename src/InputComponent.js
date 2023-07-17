@@ -12,16 +12,14 @@ const InputComponent = (props) => {
   //입력값 제출시
   const handlerSubmit = (e) => {
     e.preventDefault();
-    props.insert(inputText);
+    props.handlerInsert(inputText);
     setInputText("");
   };
 
   return (
     <div>
-      <form>
-        <input onChange={handlerChange} value={inputText}></input>
-        <button onClick={handlerSubmit}>추가</button>
-      </form>
+      <input onChange={handlerChange} value={inputText}></input>
+      <button onClick={handlerSubmit}>추가</button>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const ListComponent = (props) => {
         '"' + item.id + "번 " + item.text + '"을 삭제하시겠습니까?'
       )
     ) {
-      props.remove(item.id);
+      props.handlerRemove(item.id);
     }
   };
   const namesList = props.names.map((item) => (

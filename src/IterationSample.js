@@ -1,48 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
+import InputComponent from "./InputComponent";
+import ListComponent from "./ListComponent";
+import useIterationSampleModel from "./useIterationSampleModel";
 
-const IterationSample = () => {
-  const [inputText, setInputText] = useState("");
-
-  const [names, setNames] = useState([
+const initData = {
+  names: [
     { id: 1, text: "눈사람" },
     { id: 2, text: "얼음" },
     { id: 3, text: "눈" },
     { id: 4, text: "바람" },
-  ]);
-  const handlerRemove = (id) => {
-    alert("삭제");
-    console.log("id : " + id);
-    setNames(names.filter((item) => item.id !== id));
-  };
+  ],
+};
 
-  const nameList = names.map((item) => (
-    <li key={item.id} onDoubleClick={() => handlerRemove(item.id)}>
-      {item.id}:{item.text}
-      <button onClick={() => handlerRemove(item.id)}>삭제</button>
-    </li>
-  ));
-
-  const handlerSubmit = (e) => {
-    e.preventDefault();
-    console.log("입력된 값 = " + inputText);
-    setNames(names.concat({ id: names.length + 1, text: inputText }));
-    setInputText("");
-    return false;
-  };
-
-  const handlerChange = (e) => {
-    setInputText(e.target.value);
-  };
+const IterationSample = () => {
+  const [state, handlerRemove, handlerInsert] =
+    useIterationSampleModel(initData);
 
   return (
     <div>
-      <div>
-        <form name="myForm" onSubmit={handlerSubmit}>
-          <input type="text" value={inputText} onChange={handlerChange}></input>
-          <button type="submit">추가</button>
-        </form>
-      </div>
-      <ul>{nameList}</ul>
+      <InputComponent handlerInsert={handlerInsert} />
+      <ListComponent handlerRemove={handlerRemove} names={state.names} />
     </div>
   );
 };
